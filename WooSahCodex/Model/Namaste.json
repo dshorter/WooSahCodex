@@ -1,0 +1,65 @@
+﻿//
+// Rules list for WooSah! Namaste          
+//
+{
+  "Material": {
+    "Include": [
+      "SS",
+      "Nickel",
+      "Copper",
+      "Aluminum"
+    ],
+    "Exclude": [
+      "NickelAluminumBronze"
+    ]
+  },
+  "Finish": {
+    "Include": [
+      "Industrial",
+      "Polished",
+      "Brushed",
+      "Anodized"
+    ],
+    "Exclude": [
+    ]
+  },
+  "Etching": {
+    "Include": [
+      "Fletching",
+      "Castlewellan",
+      "Radiance",
+      "Breeze",
+      "DotSun",
+      "Zen",
+      "Flux",
+      "Infinity",
+      "Caliber",
+      "Dots",
+      "Prism",
+      "Stripe"    
+    ],
+    "Exclude": [
+      "Phoenix",
+      "Breeze",
+      "Samsara",
+      "Orbit"
+    ]
+  },
+  "Color": {
+    "Include": [
+      "None"
+    ],
+    "Exclude": [
+      "Purple",
+      "Green",
+      "Red",
+      "Orange",
+      "Black",
+      "Gold",
+      "Flamed",
+      "Plum",
+      "Teal",
+      "Blue"
+    ]
+  }
+}

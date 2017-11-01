@@ -1,0 +1,48 @@
+﻿//
+// Rules list for WooSah! Chakra
+//
+{
+  "Material": [
+      "SS",
+      "Copper",
+      "Nickel",
+      "NickelAluminumBronze",
+      "Aluminum"
+    ], 
+  "Finish": [
+      "Industrial",
+      "Polished",
+      "Brushed", 
+      "Anodized"
+    ] ,
+  "Etching":  [
+      "None",
+      "Fletching",
+      "Castlewellan",
+      "Radiance",
+      "Phoenix",
+      "Breeze",   
+      "Samsara",
+      "Zen",
+      "Flux",
+      "Infinity",
+      "Caliber",
+      "Dots",
+      "Prism",
+      "Stripe",
+      "Orbit"
+    ],                
+  "Color": [
+      "None",    
+      "Purple",
+      "Green",
+      "Red",
+      "Orange",
+      "Black",
+      "Gold",
+      "Flamed",
+      "Plum",
+      "Teal",
+      "Blue"
+    ]
+  }

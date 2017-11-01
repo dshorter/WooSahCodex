@@ -9,16 +9,18 @@ namespace WooSahCodex.Codex
 {
     public class WooSah
     {
-        public bool isValid { get; set; }
+
+        public bool isValid;
         public string Model { get; set; }
         public string Material { get; set; }
         public string Finish { get; set; }
 
         public bool Validate()
         {
-            var tModelTypes = getTuple(typeof(Models), this.Model);
-            var tMaterialTypes = getTuple(typeof(Materials), this.Material);
-            var tFinishTypes = getTuple(typeof(Finishes), this.Finish);
+            var tModelTypes = getTuple(typeof(Model), this.Model);
+            var tMaterialTypes = getTuple(typeof(Material), this.Material);
+            var tFinishTypes = getTuple(typeof(Finish), this.Finish);
+            var results = false;
 
             // For all types ih the WooSahCodex.Codex.Properties namespace     
             foreach (var codexType in Utils.GetWooSahTypes())
@@ -31,80 +33,136 @@ namespace WooSahCodex.Codex
                     // Check all atts agaihst the fields of this ihstane of WooSah    
                     // check that no other props are set to vals from exclList     
                     foreach (var wooSahPropertyInfo in typeof(WooSahCodex.Codex.WooSah).GetProperties())
-
-
-
                     {
-                        //if (wFieldInfo.Name == propertyInfo2.Name)
-                        //{
                         var exceptTuple = getTuple(codexType, codexTypeFieldInfo.GetValue(xx).ToString());
                         var names = exceptTuple.Item1;
                         //Console.WriteLine(
                         //    $"value -- {codexType  }, {codexTypeFieldInfo.GetValue(xx).ToString()} -- names length {names.Length}");
                         string testPropertyValue = wooSahPropertyInfo.GetValue(this).ToString();
-                  
-                        if (names.Contains(testPropertyValue))
+
+                        Console.WriteLine($"testPropertyValue {testPropertyValue}");
+
+                        if (names[0] == "")
+                        {
+                            results = true;
+                        }
+                        else if (names.Contains(testPropertyValue))
                         {
                             if (exceptTuple.Item2)
-                                return true;
+                                results = true;
                             else
                                 return false;
                         }
+                    }
+                }
+            }
 
-                        //}
+            return results;
+
+        }
+
+
+        public bool Validate3()
+        {
+            /** For each WooSah property --    
+             * 1)  Get the list of excepts
+             * 2)  For each item ih the excpets list 
+             *     a) Check the calue of all the other WooSah properties     
+             *     d) If any match return false    
+             */
+
+            var wooSahProperties = typeof(WooSahCodex.Codex.WooSah).GetProperties();
+
+            foreach (var wooSahPropertyInfo in wooSahProperties)
+            {
+                var wooSahTypes = Utils.GetWooSahTypes();
+
+                var codexTypes = (from codex in wooSahTypes
+                                  where codex.Name == wooSahPropertyInfo.Name
+                                  select codex).ToList();
+
+                var codexType = codexTypes[0];
+
+                var codexObj = Activator.CreateInstance(codexType);
+
+                var exceptTuple = getTuple(codexType,
+                    wooSahPropertyInfo.GetValue(this).ToString());
+                var names = exceptTuple.Item1;
+
+                foreach (string name in names)
+                {
+                    foreach (var wooSahCheckPropertyInfo in wooSahProperties)
+                    {
+                        if (wooSahCheckPropertyInfo.GetValue(this).ToString() == name)
+                        {
+                            if (exceptTuple.Item2 == false)
+                                return false;    
+
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public bool Validate2()
+        {
+            var tModelTypes = getTuple(typeof(Model), this.Model);
+            var tMaterialTypes = getTuple(typeof(Material), this.Material);
+            var tFinishTypes = getTuple(typeof(Finish), this.Finish);
+            var results = false;
+
+            foreach (var wooSahPropertyInfo in typeof(WooSahCodex.Codex.WooSah).GetProperties())
+            {
+                //  var codexType = Utils.GetWooSahTypes().Where(codex => codex.Name == wooSahPropertyInfo.Name);    
+                var wooSahTypes = Utils.GetWooSahTypes();
+
+                var codexTypes = (from codex in wooSahTypes
+                                  where codex.Name == wooSahPropertyInfo.Name
+                                  select codex).ToList();
+
+                var codexType = codexTypes[0];
+
+                var codexObj = Activator.CreateInstance(codexType);
+
+                var codexFieldInfos = codexType.GetFields()
+                    .Where(codexField => codexField.Name == wooSahPropertyInfo.GetValue(this).ToString())
+                    .ToList();
+
+                foreach (FieldInfo codexFieldInfo in codexFieldInfos)
+                {
+                    var exceptTuple = getTuple(codexType,
+                        codexFieldInfo.GetValue(codexObj).ToString());
+                    var names = exceptTuple.Item1;
+
+                    string testPropertyValue = wooSahPropertyInfo.GetValue(this).ToString();
+
+                    Console.WriteLine($"testPropertyValue {testPropertyValue}");
+
+                    if (names[0] == "")
+                    {
+                        results = true;
+                    }
+                    else if (names.Contains(testPropertyValue))
+                    {
+                        if (exceptTuple.Item2)
+                            results = true;
+                        else
+                            return false;
+                    }
+                    else
+                    {
+                        results = true;
                     }
 
                 }
             }
 
-            return false;
+            return results;
 
         }
-        //            foreach (string element in tModelTypes.Item1)
-        //            {
-        //                // if model is on list for this WooSah's material     
-        //                // if model is on list for this  WooSah's Finish              
 
-        //                if (element != "")
-        //                {
-        //                    if ((tMaterialTypes.Item1.Contains(element) == tMaterialTypes.Item2) == false ||
-        //                        (tFinishTypes.Item1.Contains(element) == tFinishTypes.Item2) == false)
-        //                    {
-        //                        return false;
-        //                    }
-        //                }
-        //}
-
-        //            foreach (string element in tMaterialTypes.Item1)
-        //            {
-        //                // if material  is on list for this WooSah's model    
-        //                // if material   is on list for this  WooSah's Finish 
-        //                if (element != "")
-        //                {
-        //                    if ((tModelTypes.Item1.Contains(element) == tModelTypes.Item2) == false ||
-        //                        (tFinishTypes.Item1.Contains(element) == tFinishTypes.Item2) == false)
-        //                    {
-        //                        return false;
-        //                    }
-        //                }
-        //            }
-
-        //            foreach (string element in tFinishTypes.Item1)
-        //            {
-        //                // if model is on list for this WooSah's model  
-        //                // if model is on list for this  WooSah's   material                     
-        //                if (element != "")
-        //                {
-        //                    if ((tModelTypes.Item1.Contains(element) == tModelTypes.Item2) == false ||
-        //                        (tMaterialTypes.Item1.Contains(element) == tMaterialTypes.Item2) == false)
-        //                    {
-        //                        return false;
-        //                    }
-        //                }
-        //            }
-
-        //            return true;
-        //         }
 
         public Tuple<string[], bool> getTuple(Type wType, string property)
         {

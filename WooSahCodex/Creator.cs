@@ -16,11 +16,11 @@ namespace WooSahCodex.Codex
             WooSah wooSah;
             List<WooSah> wooSahList = new List<WooSah>();
         
-            foreach (FieldInfo modelsFieldInfo in typeof(Models).GetFields())
+            foreach (FieldInfo modelsFieldInfo in typeof(Model).GetFields())
             {
-                foreach (FieldInfo materialsFieldInfo in typeof(Materials).GetFields())
+                foreach (FieldInfo materialsFieldInfo in typeof(Material).GetFields())
                 {
-                    foreach (FieldInfo FinishFieldInfo in typeof(Finishes).GetFields())
+                    foreach (FieldInfo FinishFieldInfo in typeof(Finish).GetFields())
                     {
 
                         Count++;
@@ -36,7 +36,7 @@ namespace WooSahCodex.Codex
 
                         try
                         {
-                            wooSah.isValid = wooSah.Validate();
+                            wooSah.isValid = wooSah.Validate3();
                         }
                         catch (Exception ex  )
                         {
