@@ -30,7 +30,7 @@ namespace WooSahCodex.Codex
             var results = false;
 
             // For all types ih the WooSahCodex.Codex.Properties namespace     
-            foreach (var codexType in Utils.GetWooSahTypes())
+            foreach (var codexType in Utils.GetTypesForNamespace(null))
             {
                 FieldInfo[] codexTypeFieldInfos = codexType.GetFields();
                 var xx = Activator.CreateInstance(codexType);
@@ -82,7 +82,7 @@ namespace WooSahCodex.Codex
 
             foreach (var wooSahPropertyInfo in wooSahProperties)
             {
-                var wooSahTypes = Utils.GetWooSahTypes();
+                var wooSahTypes = Utils.GetTypesForNamespace(null);
 
                 var codexTypes = (from codex in wooSahTypes
                                   where codex.Name == wooSahPropertyInfo.Name
@@ -123,7 +123,7 @@ namespace WooSahCodex.Codex
             foreach (var wooSahPropertyInfo in typeof(WooSahCodex.Codex.WooSah).GetProperties())
             {
                 //  var codexType = Utils.GetWooSahTypes().Where(codex => codex.Name == wooSahPropertyInfo.Name);    
-                var wooSahTypes = Utils.GetWooSahTypes();
+                var wooSahTypes = Utils.GetTypesForNamespace(null);
 
                 var codexTypes = (from codex in wooSahTypes
                                   where codex.Name == wooSahPropertyInfo.Name

@@ -8,11 +8,11 @@ namespace WooSahCodex
 {
     public static class Utils
     {
-        public static List<Type> GetWooSahTypes()
+        public static List<Type> GetTypesForNamespace(string thisNamespace)
         {
             var ass = typeof(WooSah).GetTypeInfo().Assembly;
             var types = from t in ass.GetTypes()
-                        where t.Namespace == "WooSahCodex.Codex.Properties"
+                        where t.Namespace == thisNamespace
                         select t;
 
             return types.ToList();
