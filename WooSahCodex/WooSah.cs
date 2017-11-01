@@ -4,16 +4,23 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using WooSahCodex.Codex.Properties;
+using WooSahCodex.Color;
+using WooSahCodex.Etching;
+using WooSahCodex.Finish;
+using WooSahCodex.Material;
+using WooSahCodex.Model;
 
 namespace WooSahCodex.Codex
 {
     public class WooSah
     {
+        public bool isValid;     
 
-        public bool isValid;
-        public string Model { get; set; }
-        public string Material { get; set; }
-        public string Finish { get; set; }
+        public IModel Model { get; set; }
+        public IMaterial Material { get; set; }
+        public IFinish Finish { get; set; }
+        public IColor Color { get; set; }
+        public IEtching Etching { get; set; }
 
         public bool Validate()
         {
@@ -96,7 +103,7 @@ namespace WooSahCodex.Codex
                         if (wooSahCheckPropertyInfo.GetValue(this).ToString() == name)
                         {
                             if (exceptTuple.Item2 == false)
-                                return false;    
+                                return false;
 
                         }
                     }

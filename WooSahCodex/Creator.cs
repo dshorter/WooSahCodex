@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using WooSahCodex.Codex.Properties;
+using WooSahCodex;
 
 namespace WooSahCodex.Codex
 {
@@ -10,46 +11,61 @@ namespace WooSahCodex.Codex
     {
         public int Count { get; set; }
 
+
+        private HashSet<string> modelHashSet;
+        private HashSet<string> materialHashSet;
+        private HashSet<string> finishHashSet;
+        private HashSet<string> colorHashSet;
+        private HashSet<string> etchingHashSet;
+
         public Creator()
         {
             Count = 0;
             WooSah wooSah;
             List<WooSah> wooSahList = new List<WooSah>();
-        
-            foreach (FieldInfo modelsFieldInfo in typeof(Model).GetFields())
+
+            // Load the types from WooSah.json                
+            try
             {
-                foreach (FieldInfo materialsFieldInfo in typeof(Material).GetFields())
+                Utils.FillHashset(modelHashSet);
+                Utils.FillHashset(materialHashSet);
+                Utils.FillHashset(finishHashSet);
+                Utils.FillHashset(colorHashSet);
+                Utils.FillHashset(etchingHashSet);
+
+                foreach (string modelName in modelHashSet)
                 {
-                    foreach (FieldInfo FinishFieldInfo in typeof(Finish).GetFields())
+                    foreach (string materialName in materialHashSet)
                     {
-
-                        Count++;
-
-                        wooSah = new WooSah()
+                        foreach (string finishName in finishHashSet)
                         {
-                            Material = materialsFieldInfo.Name,
-                            Model = modelsFieldInfo.Name,
-                            Finish = FinishFieldInfo.Name
+                            foreach (string colorName in colorHashSet)
+                            {
+                                foreach (string etchingName in etchingHashSet)
+                                {
 
-                        };
+                                    wooSah = new WooSah()
+                                    {
+
+                                    };
 
 
-                        try
-                        {
-                            wooSah.isValid = wooSah.Validate3();
+                                }
+
+                            }
+
                         }
-                        catch (Exception ex  )
-                        {
-
-                            throw new Exception();
-                        }
-
-                        wooSahList.Add(wooSah);    
 
                     }
+
                 }
+            }
+            catch (Exception ex)
+            {
+
 
             }
+
 
             foreach (WooSah wooSahItem in wooSahList)
             {

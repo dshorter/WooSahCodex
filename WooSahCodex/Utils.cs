@@ -17,5 +17,11 @@ namespace WooSahCodex
 
             return types.ToList();
         }
+
+        public static HashSet<string> FillHashset(HashSet<string> hashSet)
+        {
+
+        }
     }
 }
+
