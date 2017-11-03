@@ -12,6 +12,8 @@ namespace WooSahCodex
         {
             try
             {
+                //var props = t.GetProperties().Where(
+                //     prop => Attribute.IsDefined(prop, typeof(MyAttribute)));
                 var ass = typeof(WooSah).GetTypeInfo().Assembly;
                 var types = from t in ass.GetTypes()
                             where t.Namespace == thisNamespace &&

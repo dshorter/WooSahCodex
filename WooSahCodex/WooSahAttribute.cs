@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WooSahCodex.Codex
+namespace WooSahCodex        
 {
     [AttributeUsage(AttributeTargets.All)]
     public class WooSahAttribute : Attribute

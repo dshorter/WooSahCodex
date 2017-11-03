@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-// using WooSahCodex.Codex.Properties;
-using WooSahCodex;
 using WooSahCodex.Color;
 using WooSahCodex.Etching;
 using WooSahCodex.Finish;
 using WooSahCodex.Material;
 using WooSahCodex.Model;
 
-namespace WooSahCodex.Codex
+namespace WooSahCodex    
 {
     public class Creator
     {

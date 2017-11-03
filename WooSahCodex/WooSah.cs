@@ -10,7 +10,7 @@ using WooSahCodex.Finish;
 using WooSahCodex.Material;
 using WooSahCodex.Model;
 
-namespace WooSahCodex.Codex
+namespace WooSahCodex        
 {
     public class WooSah
     {
