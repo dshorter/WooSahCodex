@@ -8,18 +8,53 @@ namespace WooSahCodex
 {
     public static class Utils
     {
-        public static List<Type> GetTypesForNamespace(string thisNamespace)
+        public static HashSet<Type> GetTypesForNamespace(string thisNamespace)
         {
-            var ass = typeof(WooSah).GetTypeInfo().Assembly;
-            var types = from t in ass.GetTypes()
-                        where t.Namespace == thisNamespace
-                        select t;
+            try
+            {
+                var ass = typeof(WooSah).GetTypeInfo().Assembly;
+                var types = from t in ass.GetTypes()
+                            where t.Namespace == thisNamespace &&
+                            t.GetTypeInfo().IsInterface == false
+                            select t;
 
-            return types.ToList();
+                HashSet<Type> hashSet = new HashSet<Type>(types.ToList());
+
+                return hashSet;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception();
+            }
+
         }
 
-        public static HashSet<string> FillHashset(HashSet<string> hashSet)
+        public static HashSet<string> FillHashset(string thisNamespace)
         {
+
+            try
+            {
+                var ass = typeof(WooSah).GetTypeInfo().Assembly;
+                var types = from t in ass.GetTypes()
+                            where t.Namespace == thisNamespace &&
+                            t.GetTypeInfo().IsInterface == false
+                            select t;
+
+                var typeNames = from t in types.ToList()
+                                select t.Name;
+
+                HashSet<string> thisHashSet = new HashSet<string>(typeNames.ToList());
+
+                return thisHashSet;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception();
+            }
 
         }
     }

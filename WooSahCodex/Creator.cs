@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using WooSahCodex.Codex.Properties;
+// using WooSahCodex.Codex.Properties;
 using WooSahCodex;
+using WooSahCodex.Color;
+using WooSahCodex.Etching;
+using WooSahCodex.Finish;
+using WooSahCodex.Material;
+using WooSahCodex.Model;
 
 namespace WooSahCodex.Codex
 {
@@ -28,11 +33,11 @@ namespace WooSahCodex.Codex
             // Load the types from WooSah.json                
             try
             {
-                Utils.FillHashset(modelHashSet);
-                Utils.FillHashset(materialHashSet);
-                Utils.FillHashset(finishHashSet);
-                Utils.FillHashset(colorHashSet);
-                Utils.FillHashset(etchingHashSet);
+                modelHashSet = Utils.FillHashset("WooSahCodex.Model");
+                materialHashSet = Utils.FillHashset("WooSahCodex.Material");
+                finishHashSet = Utils.FillHashset("WooSahCodex.Finish");
+                colorHashSet = Utils.FillHashset("WooSahCodex.Color");
+                etchingHashSet = Utils.FillHashset("WooSahCodex.Etching");
 
                 var colorTypes = Utils.GetTypesForNamespace("WooSahCodex.Color");
                 var materialTypes = Utils.GetTypesForNamespace("WooSahCodex.Material");
@@ -44,26 +49,38 @@ namespace WooSahCodex.Codex
                 foreach (string modelName in modelHashSet)
                 {
                     var modelType = modelTypes.Single(m => m.Name == modelName);
-                    var oModel = Activator.CreateInstance(modelType);
+                    var oModel = Activator.CreateInstance(modelType) as IModel;
 
                     foreach (string materialName in materialHashSet)
                     {
                         var materialType = materialTypes.Single(m => m.Name == materialName);
-                        var oMaterial = Activator.CreateInstance(modelType);
+                        var oMaterial = Activator.CreateInstance(materialType) as IMaterial;
 
                         foreach (string finishName in finishHashSet)
                         {
+                            var finishType = finishTypes.Single(f => f.Name == finishName);
+                            var oFinish = Activator.CreateInstance(finishType) as IFinish;
+
                             foreach (string colorName in colorHashSet)
                             {
+                                var colorType = colorTypes.Single(c => c.Name == colorName);
+                                var oColor = Activator.CreateInstance(colorType) as IColor;
+
                                 foreach (string etchingName in etchingHashSet)
                                 {
+                                    var etchingType = etchingTypes.Single(e => e.Name == etchingName);
+                                    var oEtching = Activator.CreateInstance(etchingType) as IEtching;
 
                                     wooSah = new WooSah()
                                     {
-
+                                        Model = oModel,
+                                        Material = oMaterial,
+                                        Finish = oFinish,
+                                        Etching = oEtching,
+                                        Color = oColor
                                     };
 
-
+                                    wooSahList.Add(wooSah);
                                 }
 
                             }
@@ -83,10 +100,12 @@ namespace WooSahCodex.Codex
 
             foreach (WooSah wooSahItem in wooSahList)
             {
-                Console.WriteLine($"Model -- {wooSahItem.Model}  ");
-                Console.WriteLine($"Material -- {wooSahItem.Material}  ");
-                Console.WriteLine($"Fihish -- {wooSahItem.Finish}  ");
-                Console.WriteLine($"isValid -- {wooSahItem.isValid}  ");
+                Console.WriteLine($"Model -- {wooSahItem.Model.GetType().Name  }  ");
+                Console.WriteLine($"Material -- {wooSahItem.Material.GetType().Name }  ");
+                Console.WriteLine($"Color  -- {wooSahItem.Color.GetType().Name }  ");
+                Console.WriteLine($"Etching -- {wooSahItem.Etching.GetType().Name }  ");
+                Console.WriteLine($"Fihish -- {wooSahItem.Finish.GetType().Name }  ");
+                Console.WriteLine($"isValid -- {wooSahItem.isValid }  ");
             }
 
         }

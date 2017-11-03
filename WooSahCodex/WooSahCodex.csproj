@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Color\ColorBase.cs" />
+    <Compile Remove="Finish.cs" />
+    <Compile Remove="Materials.cs" />
+    <Compile Remove="Models.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
