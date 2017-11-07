@@ -1,6 +1,7 @@
 ﻿namespace WooSahCodex.Model
 {
-    public class TheBoss : IModel
+    public class TheBoss : WooSahProperty, IModel
     {
+
     }
 }

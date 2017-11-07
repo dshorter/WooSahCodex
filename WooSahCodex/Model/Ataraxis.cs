@@ -1,6 +1,6 @@
 namespace WooSahCodex.Model
 {
-    public class Ataraxis : IModel
+    public class Ataraxis : WooSahProperty, IModel
     {
     }
 }

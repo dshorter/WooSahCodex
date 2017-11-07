@@ -7,7 +7,7 @@ using WooSahCodex.Finish;
 using WooSahCodex.Material;
 using WooSahCodex.Model;
 
-namespace WooSahCodex    
+namespace WooSahCodex
 {
     public class Creator
     {
@@ -22,6 +22,15 @@ namespace WooSahCodex
 
         public Creator()
         {
+
+            Chakra chakra = new Chakra();
+            chakra.Validate();
+
+            if (Codex.CheckSchema() == false)
+            {
+                return;
+            }
+
             Count = 0;
             WooSah wooSah;
             List<WooSah> wooSahList = new List<WooSah>();
@@ -46,6 +55,7 @@ namespace WooSahCodex
                 {
                     var modelType = modelTypes.Single(m => m.Name == modelName);
                     var oModel = Activator.CreateInstance(modelType) as IModel;
+                    Activator.CreateInstance(typeof(Chakra), new WooSah(), new HashSet<string>());
 
                     foreach (string materialName in materialHashSet)
                     {
@@ -77,6 +87,7 @@ namespace WooSahCodex
                                     };
 
                                     wooSahList.Add(wooSah);
+
                                 }
 
                             }

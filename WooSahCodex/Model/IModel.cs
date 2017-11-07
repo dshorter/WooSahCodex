@@ -1,6 +1,6 @@
 ﻿namespace WooSahCodex.Model
 {
-    public interface IModel
+    public interface IModel :  IWooSahProperty
     {
 
 

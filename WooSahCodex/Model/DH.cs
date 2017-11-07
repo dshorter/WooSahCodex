@@ -1,6 +1,6 @@
 namespace WooSahCodex.Model
 {
-    public class DH : IModel
+    public class DH : WooSahProperty, IModel
     {
     }
 }

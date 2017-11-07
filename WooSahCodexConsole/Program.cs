@@ -1,5 +1,5 @@
 ﻿using System;
-using WooSahCodex.Codex;
+using WooSahCodex;
 
 
 namespace WooSahCodexConsole
@@ -11,7 +11,7 @@ namespace WooSahCodexConsole
             Console.WriteLine("WooSah!");
 
             Creator creator = new Creator();
-            
+
             Console.ReadLine();
 
         }

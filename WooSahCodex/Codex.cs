@@ -11,6 +11,9 @@ namespace WooSahCodex
         public static bool CheckSchema()
         {
 
+            // 1. Check that all json values are unique      
+            // 2. Check that there are classes for all properties in json 
+            //    and reverse    
 
             return false;
 
