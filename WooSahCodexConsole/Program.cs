@@ -2,6 +2,7 @@
 using WooSahCodex;
 
 
+
 namespace WooSahCodexConsole
 {
     class Program
@@ -11,6 +12,7 @@ namespace WooSahCodexConsole
             Console.WriteLine("WooSah!");
 
             Creator creator = new Creator();
+            Codex.GetExcepts(WooSahCategory.Model, typeof(WooSahCodex.Model.Chakra));
 
             Console.ReadLine();
 

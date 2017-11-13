@@ -1,49 +1,52 @@
 ﻿//
-//  WooSah properties        
+//  WooSah properties
 //
 {
   "Material": [
-      "SS",
-      "Copper",
-      "Nickel",
-      "NickelAluminumBronze",
-      "Aluminum"
-    ], 
+    "SS",
+    "Copper",
+    "Nickel",
+    "NickelAluminumBronze",
+    "Aluminum"
+  ],
   "Finish": [
-      "Industrial",
-      "Polished",
-      "Brushed", 
-      "Anodized"
-    ] ,
-  "Etching":  [
-      "None",
-      "Fletching",
-      "Castlewellan",
-      "Radiance",
-      "Phoenix",
-      "Breeze",   
-      "Samsara",
-      "Zen",
-      "Flux",
-      "Infinity",
-      "Caliber",
-      "Dots",
-      "Prism",
-      "Stripe",
-      "Orbit",  
-      "Snowflake"        
-    ],                
+    "Industrial",
+    "Polished",
+    "Brushed",
+    "Anodized"
+  ],
+  "Etching": [
+    "None",
+    "Fletching",
+    "Castlewellan",
+    "Radiance",
+    "Phoenix",
+    "Breeze",
+    "Samsara",
+    "Zen",
+    "Flux",
+    "Infinity",
+    "Caliber",
+    "Dots",
+    "Prism",
+    "Stripe",
+    "Orbit",
+    "Snowflake",
+    "Premiere",
+    "Ripple",
+    "Dish"
+  ],
   "Color": [
-      "None",    
-      "Purple",
-      "Green",
-      "Red",
-      "Orange",
-      "Black",
-      "Gold",
-      "Flamed",
-      "Plum",
-      "Teal",
-      "Blue"
-    ]
-  }
+    "None",
+    "Purple",
+    "Green",
+    "Red",
+    "Orange",
+    "Black",
+    "Gold",
+    "Flamed",
+    "Plum",
+    "Teal",
+    "Blue"
+  ]
+}

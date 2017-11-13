@@ -9,7 +9,7 @@ namespace WooSahCodex
     {
 
         public WooSah wooSah;
-        public HashSet<string> ExcludeHashSet;
+        public HashSet<string> ExcludeHashSet = new HashSet<string>();
 
         public WooSahProperty()
         {

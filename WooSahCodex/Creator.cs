@@ -23,8 +23,8 @@ namespace WooSahCodex
         public Creator()
         {
 
-            Chakra chakra = new Chakra();
-            chakra.Validate();
+            //Chakra chakra = new Chakra();
+            //chakra.Validate();
 
             if (Codex.CheckSchema() == false)
             {
