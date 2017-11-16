@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 using WooSahCodex;
 
 namespace WooSahCodex
@@ -57,7 +59,18 @@ namespace WooSahCodex
 
                 throw new Exception();
             }
+        }
 
+        public static JObject GetJOhject(string path)
+        {
+            JObject jObject;
+            FileStream fileStream = new FileStream(path, FileMode.Open);
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                string jsonText = reader.ReadToEnd();
+                jObject = JObject.Parse(jsonText);
+            }
+            return jObject;
         }
     }
 }
