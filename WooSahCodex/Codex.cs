@@ -16,14 +16,18 @@ namespace WooSahCodex
 
             HashSet<Type> codeTypescheckSet = new HashSet<Type>();
 
+            // Collect all types      
             codeTypescheckSet.UnionWith(Utils.GetTypesForNamespace("WooSahCodex.Model"));
             codeTypescheckSet.UnionWith(Utils.GetTypesForNamespace("WooSahCodex.Color"));
             codeTypescheckSet.UnionWith(Utils.GetTypesForNamespace("WooSahCodex.Etching"));
             codeTypescheckSet.UnionWith(Utils.GetTypesForNamespace("WooSahCodex.Finish"));
             codeTypescheckSet.UnionWith(Utils.GetTypesForNamespace("WooSahCodex.Material"));
 
+            // Strip out type names to a list       
             var simpleCodeList = codeTypescheckSet.Select(type => type.Name).ToList();
 
+            // Use the list to create a HashSet.  If the HashSet strips 
+            // out duplicates the Counts will he different      
             var unique = new HashSet<string>(simpleCodeList);
 
             return simpleCodeList.Count == unique.Count;
@@ -69,7 +73,34 @@ namespace WooSahCodex
 
         private static bool JsonTypesUnique()
         {
-            throw new NotImplementedException();
+            string path = @"..\WooSahCodex\WooSah.json";
+
+            var jObject = Utils.GetJOhject(path);
+
+            HashSet<string> jsonTypeCheckSet = new HashSet<string>();
+
+            foreach (JProperty jProperty in jObject.Properties())
+            {
+
+                var jArray = JArray.Parse(jProperty.Value.ToString());
+
+                //Console.WriteLine(jArray[1]);
+                //Console.WriteLine(jArray.Select(jt => jt.Values().Select(a => a.Values())));
+                jArray.ToList().ForEach(x => Console.WriteLine(x + "a"));
+
+                var propertyVals = new List<string>();
+
+                jArray.ToList().ForEach(x => propertyVals.Add(x.ToString()));
+
+                //var children = new HashSet<string>(
+                //  var children = jProperty.SelectTokens("*").Select(x => x.Value<string>()).ToList();
+
+                jsonTypeCheckSet.UnionWith(propertyVals);
+
+            }
+
+            return true;
+
         }
 
         private static bool JsonTypesMatchCodeTypes()
