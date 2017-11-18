@@ -78,22 +78,21 @@ namespace WooSahCodex
             var jObject = Utils.GetJOhject(path);
 
             HashSet<string> jsonTypeCheckSet = new HashSet<string>();
+            List<string> jsonTypeCheckList = new List<string>();
 
             foreach (JProperty jProperty in jObject.Properties())
             {
 
                 var jArray = JArray.Parse(jProperty.Value.ToString());
-
-                //Console.WriteLine(jArray[1]);
-                //Console.WriteLine(jArray.Select(jt => jt.Values().Select(a => a.Values())));
-                jArray.ToList().ForEach(x => Console.WriteLine(x + "a"));
-
                 var propertyVals = new List<string>();
 
-                jArray.ToList().ForEach(x => propertyVals.Add(x.ToString()));
+                jArray.Where
+                    (d => d.ToString() != "None").ToList().ForEach
+                    (x => propertyVals.Add(x.ToString()));    
 
-                //var children = new HashSet<string>(
-                //  var children = jProperty.SelectTokens("*").Select(x => x.Value<string>()).ToList();
+                jArray.Where
+                    (d => d.ToString() != "None").ToList().ForEach
+                    (x => jsonTypeCheckList.Add(x.ToString()));    
 
                 jsonTypeCheckSet.UnionWith(propertyVals);
 
