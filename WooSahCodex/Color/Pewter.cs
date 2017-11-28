@@ -1,6 +1,6 @@
 namespace WooSahCodex.Color
 {
-    public class Pewter : IColor
+    public class Pewter : WooSahProperty, IColor
     {
 
     }

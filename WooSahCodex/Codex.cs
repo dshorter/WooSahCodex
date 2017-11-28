@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -73,33 +74,26 @@ namespace WooSahCodex
 
         private static bool JsonTypesUnique()
         {
+
             string path = @"..\WooSahCodex\WooSah.json";
-
             var jObject = Utils.GetJOhject(path);
-
             HashSet<string> jsonTypeCheckSet = new HashSet<string>();
             List<string> jsonTypeCheckList = new List<string>();
 
             foreach (JProperty jProperty in jObject.Properties())
             {
-
-                var jArray = JArray.Parse(jProperty.Value.ToString());
-                var propertyVals = new List<string>();
+                var jArray = JArray.Parse(jProperty.Value.ToString());          
 
                 jArray.Where
                     (d => d.ToString() != "None").ToList().ForEach
-                    (x => propertyVals.Add(x.ToString()));    
-
-                jArray.Where
-                    (d => d.ToString() != "None").ToList().ForEach
-                    (x => jsonTypeCheckList.Add(x.ToString()));    
-
-                jsonTypeCheckSet.UnionWith(propertyVals);
-
+                    (x => {
+                            jsonTypeCheckSet.Add(x.ToString());
+                            jsonTypeCheckList.Add(x.ToString());
+                          }
+                    );                
             }
 
-            return true;
-
+            return jsonTypeCheckSet.Count == jsonTypeCheckList.Count;
         }
 
         private static bool JsonTypesMatchCodeTypes()

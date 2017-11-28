@@ -5,7 +5,7 @@ using WooSahCodex.Model;
 
 namespace WooSahCodex
 {
-    public class WooSahProperty
+    public abstract class WooSahProperty
     {
 
         public WooSah wooSah;
@@ -13,9 +13,9 @@ namespace WooSahCodex
 
         public WooSahProperty()
         {
-            
 
-            
+
+
         }
 
         public WooSahProperty(WooSah wooSah, HashSet<string> ExcludeHashSet)
@@ -24,11 +24,11 @@ namespace WooSahCodex
 
         }
 
-        public bool Validate()
+        public virtual bool Validate()
         {
             if (wooSah.Model is Chakra)
             {
-                
+
             }
             if (ExcludeHashSet.Contains(wooSah.Material.ToString()) ||
                 ExcludeHashSet.Contains(wooSah.Model.ToString()) ||

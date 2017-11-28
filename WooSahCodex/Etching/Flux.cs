@@ -1,4 +1,10 @@
 namespace WooSahCodex.Etching
 {
-    public class Flux : IEtching { }
+    public class Flux : WooSahProperty, IEtching
+    {
+        public bool Validate()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

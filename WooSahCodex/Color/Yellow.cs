@@ -1,6 +1,6 @@
 namespace WooSahCodex.Color
 {
-    public class Yellow : IColor
+    public class Yellow : WooSahProperty, IColor
     {
 
     }

@@ -1,8 +1,8 @@
 ﻿namespace WooSahCodex.Etching
 {
-    public class Radiance : WooSahProperty, IEtching
+    public class Imperial : WooSahProperty, IEtching
     {
-        public bool Validate()
+        public override bool Validate()
         {
             throw new System.NotImplementedException();
         }

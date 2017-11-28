@@ -1,8 +1,8 @@
 namespace WooSahCodex.Etching
 {
-    public class Dots : WooSahProperty, IEtching
+    public class Premiere : WooSahProperty, IEtching
     {
-        public bool Validate()
+        public override bool Validate()
         {
             throw new System.NotImplementedException();
         }

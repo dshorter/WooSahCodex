@@ -1,6 +1,6 @@
 namespace WooSahCodex.Material
 {
-    public class Aluminum : IMaterial
+    public class Aluminum :   WooSahProperty, IMaterial  
     {
 
     }
