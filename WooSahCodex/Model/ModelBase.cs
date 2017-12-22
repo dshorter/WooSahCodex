@@ -6,8 +6,8 @@ using Newtonsoft.Json;
 
 namespace WooSahCodex.Model
 {
-    public abstract class ModelBase
-    {
+    //public abstract class ModelBase
+    //{
           
-    }
+    //}
 }

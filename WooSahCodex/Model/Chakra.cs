@@ -5,13 +5,28 @@ namespace WooSahCodex.Model
 
         public Chakra()
         {
-
-            if (ExcludeHashSet.Contains("aaaa"))
-            {
-
-            }
-
+            
         }
+        public Chakra(WooSah wooSah) : base(wooSah) { }
+
+        public override bool Validate()
+        {
+            var myResult = true;
+
+            var x = WooSah;
+
+            return myResult && base.Validate();
+        }    
+
+        //public Chakra()
+        //{
+
+        //    if (ExcludeHashSet.Contains("aaaa"))
+        //    {
+
+        //    }
+
+        //}
     }
 }
 

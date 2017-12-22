@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using WooSahCodex.Color;
 using WooSahCodex.Etching;
@@ -12,7 +13,7 @@ namespace WooSahCodex
     public class Creator
     {
         public int Count { get; set; }
-
+        public List<WooSah> wooSahList;
 
         private HashSet<string> modelHashSet;
         private HashSet<string> materialHashSet;
@@ -22,15 +23,36 @@ namespace WooSahCodex
 
         public Creator()
         {
-  
-            if (Codex.CheckSchema() == false)
+
+            try
             {
-                return;
+                if (Codex.CheckSchema() == false)
+                    return;
+                Create();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " ==== " + ex.InnerException.Message);
             }
 
+
+            foreach (WooSah wooSahItem in wooSahList)
+            {
+                Console.WriteLine($"Model -- {wooSahItem.Model.GetType().Name  }  ");
+                Console.WriteLine($"Material -- {wooSahItem.Material.GetType().Name }  ");
+                Console.WriteLine($"Color  -- {wooSahItem.Color.GetType().Name }  ");
+                Console.WriteLine($"Etching -- {wooSahItem.Etching.GetType().Name }  ");
+                Console.WriteLine($"Fihish -- {wooSahItem.Finish.GetType().Name }  ");
+                Console.WriteLine($"isValid -- {wooSahItem.isValid }  ");
+            }
+
+        }
+
+        private void Create()
+        {
             Count = 0;
             WooSah wooSah;
-            List<WooSah> wooSahList = new List<WooSah>();
+            wooSahList = new List<WooSah>();
 
             // Load the types from WooSah.json                
             try
@@ -47,12 +69,10 @@ namespace WooSahCodex
                 var modelTypes = Utils.GetTypesForNamespace("WooSahCodex.Model");
                 var etchingTypes = Utils.GetTypesForNamespace("WooSahCodex.Etching");
 
-
                 foreach (string modelName in modelHashSet)
                 {
                     var modelType = modelTypes.Single(m => m.Name == modelName);
                     var oModel = Activator.CreateInstance(modelType) as IModel;
-                    Activator.CreateInstance(typeof(Chakra), new WooSah(), new HashSet<string>());
 
                     foreach (string materialName in materialHashSet)
                     {
@@ -74,17 +94,23 @@ namespace WooSahCodex
                                     var etchingType = etchingTypes.Single(e => e.Name == etchingName);
                                     var oEtching = Activator.CreateInstance(etchingType) as IEtching;
 
-                                    wooSah = new WooSah()
-                                    {
-                                        Model = oModel,
-                                        Material = oMaterial,
-                                        Finish = oFinish,
-                                        Etching = oEtching,
-                                        Color = oColor
-                                    };
+                                    wooSah = new WooSah();
+
+                                    ((WooSahProperty)oModel).SetWooSah(wooSah);
+                                    ((WooSahProperty)oMaterial).SetWooSah(wooSah);
+                                    ((WooSahProperty)oEtching).SetWooSah(wooSah);
+                                    ((WooSahProperty)oColor).SetWooSah(wooSah);
+                                    ((WooSahProperty)oFinish).SetWooSah(wooSah);
+
+                                    wooSah.Model = oModel;
+                                    wooSah.Material = oMaterial;
+                                    wooSah.Finish = oFinish;
+                                    wooSah.Etching = oEtching;
+                                    wooSah.Color = oColor;
+
+                                    wooSah.ValidateMe();
 
                                     wooSahList.Add(wooSah);
-
                                 }
 
                             }
@@ -97,19 +123,7 @@ namespace WooSahCodex
             }
             catch (Exception ex)
             {
-
-
-            }
-
-
-            foreach (WooSah wooSahItem in wooSahList)
-            {
-                Console.WriteLine($"Model -- {wooSahItem.Model.GetType().Name  }  ");
-                Console.WriteLine($"Material -- {wooSahItem.Material.GetType().Name }  ");
-                Console.WriteLine($"Color  -- {wooSahItem.Color.GetType().Name }  ");
-                Console.WriteLine($"Etching -- {wooSahItem.Etching.GetType().Name }  ");
-                Console.WriteLine($"Fihish -- {wooSahItem.Finish.GetType().Name }  ");
-                Console.WriteLine($"isValid -- {wooSahItem.isValid }  ");
+                throw new Exception(ex.Message + " ==== " + ex.InnerException.Message);
             }
 
         }

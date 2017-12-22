@@ -8,38 +8,52 @@ namespace WooSahCodex
     public abstract class WooSahProperty
     {
 
-        public WooSah wooSah;
-        public HashSet<string> ExcludeHashSet = new HashSet<string>();
+        protected WooSah _wooSah;
 
         public WooSahProperty()
         {
+            
+
+
 
 
 
         }
 
-        public WooSahProperty(WooSah wooSah, HashSet<string> ExcludeHashSet)
+          
+        public WooSahProperty(WooSah wooSah)
         {
-            this.ExcludeHashSet = ExcludeHashSet;
+
+            WooSah = wooSah;
 
         }
+
+        protected internal WooSah WooSah
+        {
+            get { return _wooSah; }
+            set { _wooSah = value; }
+        }
+
 
         public virtual bool Validate()
         {
-            if (wooSah.Model is Chakra)
+            if (WooSah.Model is Chakra)
             {
 
-            }
-            if (ExcludeHashSet.Contains(wooSah.Material.ToString()) ||
-                ExcludeHashSet.Contains(wooSah.Model.ToString()) ||
-                ExcludeHashSet.Contains(wooSah.Color.ToString()) ||
-                ExcludeHashSet.Contains(wooSah.Etching.ToString()) ||
-                ExcludeHashSet.Contains(wooSah.Finish.ToString()))
-            {
-                return false;
             }
 
             return true;
         }
+
+        public void SetWooSah(WooSah wooSah)
+        {
+
+            this.WooSah = wooSah;
+
+        }
     }
 }
+
+
+
+

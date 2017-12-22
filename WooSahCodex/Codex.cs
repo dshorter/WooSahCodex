@@ -12,9 +12,46 @@ namespace WooSahCodex
     public static class Codex
     {
 
-        public static bool WooSahCodexTypesUnique()
+        public static bool CheckSchema()
         {
 
+            // Check that all WooSah types are unique      
+            if (WooSahCodexTypesUnique() == false)
+                return false;
+
+            // Check that all json values are unique        
+            if (JsonTypesUnique() == false)
+                return false;
+
+            // Check that there are classes for all properties in json and vice versa    
+            if (JsonTypesMatchCodeTypes() == false)
+                return false;
+
+            return true;
+
+        }
+
+        private static bool JsonTypesMatchCodeTypes()
+        {
+
+
+            string path = @"..\WooSahCodex\WooSah.json";
+            var thisJObject = Utils.GetJOhject(path);
+
+            var codex_modelHashSet = Utils.FillHashset("WooSahCodex.Model");
+            var codex_materialHashSet = Utils.FillHashset("WooSahCodex.Material");
+            var codex_finishHashSet = Utils.FillHashset("WooSahCodex.Finish");
+            var codex_colorHashSet = Utils.FillHashset("WooSahCodex.Color");
+            var codex_etchingHashSet = Utils.FillHashset("WooSahCodex.Etching");
+
+            var jsonModelHashSet = thisJObject.Properties().Where(x => x.Name == "Model").ToList();
+
+            return true;
+
+        }
+
+        public static bool WooSahCodexTypesUnique()
+        {
             HashSet<Type> codeTypescheckSet = new HashSet<Type>();
 
             // Collect all types      
@@ -35,43 +72,6 @@ namespace WooSahCodex
 
         }
 
-        public static bool CheckSchema()
-        {
-            if (WooSahCodexTypesUnique() == false)
-                return false;
-
-            if (JsonTypesUnique() == false)
-                return false;
-
-            if (JsonTypesMatchCodeTypes() == false)
-                return false;
-
-
-            // 1. Check that all json values are unique      
-            // 2. Check that there are classes for all properties in json 
-            //    and reverse    
-
-            string path = @"..\WooSahCodex\WooSah.json";
-
-            var jObject = Utils.GetJOhject(path);
-            HashSet<Type> codeTypescheckSet = new HashSet<Type>();
-            foreach (JProperty jProperty in jObject.Properties())
-            {
-
-                string wNamespace = "WooSahCodex." + jProperty.Name;
-                HashSet<Type> typesForNamespace = Utils.GetTypesForNamespace(wNamespace);
-                codeTypescheckSet.UnionWith(typesForNamespace);
-
-            }
-
-            var simpleCodeList = codeTypescheckSet.Select(type => type.Name).ToList();
-
-            var unique = new HashSet<string>(simpleCodeList);
-
-            return true;
-
-        }
-
         private static bool JsonTypesUnique()
         {
 
@@ -82,23 +82,19 @@ namespace WooSahCodex
 
             foreach (JProperty jProperty in jObject.Properties())
             {
-                var jArray = JArray.Parse(jProperty.Value.ToString());          
+                var jArray = JArray.Parse(jProperty.Value.ToString());
 
                 jArray.Where
                     (d => d.ToString() != "None").ToList().ForEach
-                    (x => {
-                            jsonTypeCheckSet.Add(x.ToString());
-                            jsonTypeCheckList.Add(x.ToString());
-                          }
-                    );                
+                    (x =>
+                    {
+                        jsonTypeCheckSet.Add(x.ToString());
+                        jsonTypeCheckList.Add(x.ToString());
+                    }
+                    );
             }
 
             return jsonTypeCheckSet.Count == jsonTypeCheckList.Count;
-        }
-
-        private static bool JsonTypesMatchCodeTypes()
-        {
-            throw new NotImplementedException();
         }
 
         public static List<HashSet<string>> GetExcepts(WooSahCategory wooSahCategory, Type wooSahProp)

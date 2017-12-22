@@ -22,22 +22,22 @@ namespace WooSahCodex
         public IEtching Etching { get; set; }
 
 
-        public bool Validate()
+        public bool ValidateMe()
         {
             WooSahProperty model = Model as WooSahProperty;
+            model.WooSah = this;    
 
             if (model.Validate())
             {
 
             }
 
-            return true;    
+            return true;
 
         }
 
         public WooSah()
         {
-
 
 
         }

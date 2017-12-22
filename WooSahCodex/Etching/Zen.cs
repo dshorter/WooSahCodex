@@ -2,7 +2,13 @@ namespace WooSahCodex.Etching
 {
     public class Zen : WooSahProperty, IEtching
     {
-        public bool Validate()
+        public Zen()
+        {
+            
+        }
+        public Zen(WooSah wooSah) : base(wooSah) { }
+
+        public override bool Validate()
         {
             throw new System.NotImplementedException();
         }

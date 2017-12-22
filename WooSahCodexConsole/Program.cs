@@ -11,8 +11,16 @@ namespace WooSahCodexConsole
         {
             Console.WriteLine("WooSah!");
 
-            Creator creator = new Creator();
-            Codex.GetExcepts(WooSahCategory.Model, typeof(WooSahCodex.Model.Chakra));
+            try
+            {
+                Creator creator = new Creator();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " ==== " + ex.InnerException.Message);
+            }
+
+            var results = Codex.GetExcepts(WooSahCategory.Model, typeof(WooSahCodex.Model.Chakra));
 
             Console.ReadLine();
 

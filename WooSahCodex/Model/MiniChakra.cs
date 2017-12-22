@@ -1,13 +1,13 @@
-﻿namespace WooSahCodex.Model
+namespace WooSahCodex.Model
 {
-    public class Namaste : WooSahProperty, IModel
+    public class MiniChakra : WooSahProperty, IModel
     {
 
-        public Namaste()
+        public MiniChakra()
         {
-            
+
         }
-        public Namaste(WooSah wooSah) : base(wooSah) { }
+        public MiniChakra(WooSah wooSah) : base(wooSah) { }
 
         public override bool Validate()
         {
@@ -17,5 +17,6 @@
 
             return myResult && base.Validate();
         }
+   
     }
 }

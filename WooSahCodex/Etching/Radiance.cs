@@ -2,7 +2,13 @@
 {
     public class Radiance : WooSahProperty, IEtching
     {
-        public bool Validate()
+        public Radiance()
+        {
+            
+        }
+        public Radiance(WooSah wooSah) : base(wooSah) { }
+
+        public override bool Validate()
         {
             throw new System.NotImplementedException();
         }
