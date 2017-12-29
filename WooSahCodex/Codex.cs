@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace WooSahCodex
 {
+    public enum PropertyTypes
+    {
+        Model,
+        Material,
+        Finish,
+        Color,
+        Etching
+    }
+
     public static class Codex
     {
 
@@ -33,21 +44,58 @@ namespace WooSahCodex
 
         private static bool JsonTypesMatchCodeTypes()
         {
+            string jsonPath = @"..\WooSahCodex\WooSah.json";
+            var jObject = Utils.GetJOhject(jsonPath);
 
+            List<JProperty> jProps = jObject.Properties().ToList();
 
-            string path = @"..\WooSahCodex\WooSah.json";
-            var thisJObject = Utils.GetJOhject(path);
+            var arrTypes = Enum.GetNames(typeof(PropertyTypes));
+            var arrEnums = Enum.GetValues(typeof(PropertyTypes));    
 
-            var codex_modelHashSet = Utils.FillHashset("WooSahCodex.Model");
-            var codex_materialHashSet = Utils.FillHashset("WooSahCodex.Material");
-            var codex_finishHashSet = Utils.FillHashset("WooSahCodex.Finish");
-            var codex_colorHashSet = Utils.FillHashset("WooSahCodex.Color");
-            var codex_etchingHashSet = Utils.FillHashset("WooSahCodex.Etching");
-
-            var jsonModelHashSet = thisJObject.Properties().Where(x => x.Name == "Model").ToList();
+            foreach (PropertyTypes arrEnum in arrEnums)
+            {
+                if (checkProps(jProps, arrEnum) == false)
+                {
+                    //     return false;
+                }
+            }
 
             return true;
 
+        }
+
+        private static bool checkProps(List<JProperty> jProps, PropertyTypes propertyType)
+        {
+            HashSet<string> hsCodex = Utils.FillHashset("WooSahCodex." + propertyType.ToString());
+            HashSet<string> hsJson = new HashSet<string>();
+            JProperty jProp = jProps.Single(x => x.Name == propertyType.ToString());
+
+            jProp.Children()
+                .Values()
+                .Where
+                (child => child.ToString() != "None")
+                .ToList()
+                .ForEach(
+                    item => hsJson.Add(item.ToString()));
+
+            var jsonExcepts = hsJson.Except(hsCodex);
+            var codexExcepts = hsCodex.Except(hsJson);
+
+            if (jsonExcepts.Any() || codexExcepts.Any())
+            {
+              //  Console.WriteLine("Not present for codex ");
+                Debug.WriteLine("Not present for codex ");  
+                //  jsonExcepts.ToList().ForEach(j => Console.WriteLine(j));
+                jsonExcepts.ToList().ForEach(j => Debug.WriteLine(j));
+               // Console.WriteLine("Not present for Json");
+                Debug.WriteLine("Not present for Json ");
+                //  codexExcepts.ToList().ForEach(j => Console.WriteLine(j));
+                codexExcepts.ToList().ForEach(j => Debug.WriteLine(j));
+
+          
+                // return false;
+            }
+            return true;
         }
 
         public static bool WooSahCodexTypesUnique()
