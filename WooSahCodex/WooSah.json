@@ -10,19 +10,22 @@
     "MiniChakra",
     "Namaste",
     "TheBoss",
-    "Ataraxis"
-  ],  
+    "Ataraxis",
+    "ChakraMini",
+    "CosmoMini"
+  ],
   "Material": [
     "SS",
     "Copper",
-    "Nickel",
-    "NickelAluminumBronze",
+    "NickelCoatedSS", 
+    "AluminumNickelBronze",
     "Aluminum"
   ],
   "Finish": [
     "Industrial",
     "Polished",
     "Brushed",
+    "Tumbled",
     "Anodized"
   ],
   "Etching": [
@@ -47,8 +50,9 @@
     "Dish",
     "Snow",
     "Imperial",
-    "Slots", 
-    "Fortitude",      
+    "Slots",
+    "Fortitude",    
+    "Lace",    
     "Ambassador" 
   ],
   "Color": [
@@ -62,6 +66,8 @@
     "Flamed",
     "Plum",
     "Teal",
-    "Blue"
+    "Blue",
+    "Yellow",
+    "Pewter"
   ]
 }

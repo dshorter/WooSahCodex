@@ -18,15 +18,44 @@ namespace WooSahCodex.Model
             return myResult && base.Validate();
         }    
 
-        //public Chakra()
-        //{
+    }
+    public class ChakraMini : WooSahProperty, IModel
+    {
 
-        //    if (ExcludeHashSet.Contains("aaaa"))
-        //    {
+        public ChakraMini()
+        {
 
-        //    }
+        }
+        public ChakraMini(WooSah wooSah) : base(wooSah) { }
 
-        //}
+        public override bool Validate()
+        {
+            var myResult = true;
+
+            var x = WooSah;
+
+            return myResult && base.Validate();
+        }
+
+    }
+    public class CosmoMini : WooSahProperty, IModel
+    {
+
+        public CosmoMini()
+        {
+
+        }
+        public CosmoMini(WooSah wooSah) : base(wooSah) { }
+
+        public override bool Validate()
+        {
+            var myResult = true;
+
+            var x = WooSah;
+
+            return myResult && base.Validate();
+        }
+
     }
 }
 

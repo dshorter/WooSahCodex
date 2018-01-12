@@ -1,11 +1,11 @@
 namespace WooSahCodex.Material
 {
-    public class Nickel : WooSahProperty, IMaterial
+    public class NickelCoatedSS   : WooSahProperty, IMaterial
     {
-        public Nickel()
+        public NickelCoatedSS()
         {
             
         }
-        public Nickel(WooSah wooSah) : base(wooSah) { }
+        public NickelCoatedSS(WooSah wooSah) : base(wooSah) { }
     }
 } 

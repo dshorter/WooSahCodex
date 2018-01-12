@@ -1,12 +1,12 @@
 namespace WooSahCodex.Material
 {
-    public class NickelAluminumBronze : WooSahProperty, IMaterial
+    public class AluminumNickelBronze : WooSahProperty, IMaterial
     {
-        public NickelAluminumBronze()
+        public AluminumNickelBronze()
         {
             
         }
-        public NickelAluminumBronze(WooSah wooSah) : base(wooSah) { }
+        public AluminumNickelBronze(WooSah wooSah) : base(wooSah) { }
 
         public override bool Validate()
         {

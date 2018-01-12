@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 
 namespace WooSahCodex
 {
@@ -50,7 +45,7 @@ namespace WooSahCodex
             List<JProperty> jProps = jObject.Properties().ToList();
 
             var arrTypes = Enum.GetNames(typeof(PropertyTypes));
-            var arrEnums = Enum.GetValues(typeof(PropertyTypes));    
+            var arrEnums = Enum.GetValues(typeof(PropertyTypes));
 
             foreach (PropertyTypes arrEnum in arrEnums)
             {
@@ -66,6 +61,7 @@ namespace WooSahCodex
 
         private static bool checkProps(List<JProperty> jProps, PropertyTypes propertyType)
         {
+
             HashSet<string> hsCodex = Utils.FillHashset("WooSahCodex." + propertyType.ToString());
             HashSet<string> hsJson = new HashSet<string>();
             JProperty jProp = jProps.Single(x => x.Name == propertyType.ToString());
@@ -83,18 +79,15 @@ namespace WooSahCodex
 
             if (jsonExcepts.Any() || codexExcepts.Any())
             {
-              //  Console.WriteLine("Not present for codex ");
-                Debug.WriteLine("Not present for codex ");  
-                //  jsonExcepts.ToList().ForEach(j => Console.WriteLine(j));
+
+                Debug.WriteLine("Not present for codex ");
                 jsonExcepts.ToList().ForEach(j => Debug.WriteLine(j));
-               // Console.WriteLine("Not present for Json");
                 Debug.WriteLine("Not present for Json ");
-                //  codexExcepts.ToList().ForEach(j => Console.WriteLine(j));
                 codexExcepts.ToList().ForEach(j => Debug.WriteLine(j));
 
-          
-                // return false;
+               //    return false;
             }
+
             return true;
         }
 

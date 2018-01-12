@@ -36,15 +36,18 @@ namespace WooSahCodex
             }
 
 
-            foreach (WooSah wooSahItem in wooSahList)
-            {
-                Console.WriteLine($"Model -- {wooSahItem.Model.GetType().Name  }  ");
-                Console.WriteLine($"Material -- {wooSahItem.Material.GetType().Name }  ");
-                Console.WriteLine($"Color  -- {wooSahItem.Color.GetType().Name }  ");
-                Console.WriteLine($"Etching -- {wooSahItem.Etching.GetType().Name }  ");
-                Console.WriteLine($"Fihish -- {wooSahItem.Finish.GetType().Name }  ");
-                Console.WriteLine($"isValid -- {wooSahItem.isValid }  ");
-            }
+            Console.WriteLine($"WooSah count -- {wooSahList.Count}  ");
+
+
+            //foreach (WooSah wooSahItem in wooSahList)
+            //{
+            //    Console.WriteLine($"Model -- {wooSahItem.Model.GetType().Name  }  ");
+            //    Console.WriteLine($"Material -- {wooSahItem.Material.GetType().Name }  ");
+            //    Console.WriteLine($"Color  -- {wooSahItem.Color.GetType().Name }  ");
+            //    Console.WriteLine($"Etching -- {wooSahItem.Etching.GetType().Name }  ");
+            //    Console.WriteLine($"Finish -- {wooSahItem.Finish.GetType().Name }  ");
+            //    Console.WriteLine($"isValid -- {wooSahItem.isValid }  ");
+            //}
 
         }
 
@@ -108,6 +111,7 @@ namespace WooSahCodex
                                     wooSah.Etching = oEtching;
                                     wooSah.Color = oColor;
 
+                                    wooSah.CreatePoco();
                                     wooSah.ValidateMe();
 
                                     wooSahList.Add(wooSah);

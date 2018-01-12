@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WooSahCodex;
-
+using WooSahCodex.Data;
 
 
 namespace WooSahCodexConsole
@@ -9,11 +10,18 @@ namespace WooSahCodexConsole
     {
         static void Main(string[] args)
         {
+            Go();
+        }
+
+        private static async Task Go()
+        {
             Console.WriteLine("WooSah!");
 
             try
             {
                 Creator creator = new Creator();
+                Loader loader = new Loader(creator.wooSahList);
+                await loader.Load(creator.wooSahList);
             }
             catch (Exception ex)
             {
@@ -21,6 +29,7 @@ namespace WooSahCodexConsole
             }
 
             var results = Codex.GetExcepts(WooSahCategory.Model, typeof(WooSahCodex.Model.Chakra));
+
 
             Console.ReadLine();
 
