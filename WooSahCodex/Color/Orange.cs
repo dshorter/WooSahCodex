@@ -1,21 +1,25 @@
 namespace WooSahCodex.Color
 {
-    public class Orange :  WooSahProperty, IColor  
+    public class Orange : WooSahProperty, IColor
     {
         public Orange()
         {
-            
+
         }
         public Orange(WooSah wooSah) : base(wooSah) { }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+    public class None : WooSahProperty, IColor
+    {
+        public None()
+        {
+
+        }
+        public None(WooSah wooSah) : base(wooSah) { }
+    }
+
+
 
 
     public class Purple : WooSahProperty, IColor
@@ -74,6 +78,6 @@ namespace WooSahCodex.Color
         }
         public Teal(WooSah wooSah) : base(wooSah) { }
     }
-  
+
 
 }

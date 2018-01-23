@@ -4,7 +4,7 @@ namespace WooSahCodex.Model
     {
         public Ataraxis()
         {
-            
+
         }
         public Ataraxis(WooSah wooSah) : base(wooSah) { }
 
@@ -12,7 +12,8 @@ namespace WooSahCodex.Model
         {
             var myResult = true;
 
-            var x = WooSah;
+            if (!(_wooSah.Etching is Etching.Domed))
+                myResult = false;
 
             return myResult && base.Validate();
         }

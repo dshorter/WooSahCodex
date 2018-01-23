@@ -16,6 +16,7 @@
   ],
   "Material": [
     "SS",
+    "Titanium", 
     "Copper",
     "NickelCoatedSS", 
     "AluminumNickelBronze",
@@ -49,11 +50,17 @@
     "Ripple",
     "Dish",
     "Snow",
-    "Imperial",
+    "Imperial",    
+    "DotSun",     
     "Slots",
     "Fortitude",    
-    "Lace",    
-    "Ambassador" 
+    "Lace",
+    "Ambassador",
+    "Element",
+    "Rays",
+    "Arrow", 
+    "Domed", 
+    "Air"
   ],
   "Color": [
     "None",

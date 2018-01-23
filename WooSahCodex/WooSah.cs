@@ -29,13 +29,14 @@ namespace WooSahCodex
         public string DocumentId;
         public string _rev;
 
-        public bool isValid;
+        private bool _isValid;
 
         public IModel Model { get; set; }
         public IMaterial Material { get; set; }
         public IFinish Finish { get; set; }
         public IColor Color { get; set; }
         public IEtching Etching { get; set; }
+        public bool IsValid { get => _isValid; set => _isValid = value; }
 
         public WooSah() { }
 
@@ -43,7 +44,7 @@ namespace WooSahCodex
         {
             wooSahPoco = new WooSahPOCO()
             {
-                isValid = isValid,
+                isValid = IsValid,
                 Model = Model.GetType().Name,
                 Color = Color.GetType().Name,
                 Material = Material.GetType().Name,
@@ -52,18 +53,12 @@ namespace WooSahCodex
             };
         }
 
-        public bool ValidateMe()
+        public void ValidateMe()
         {
             WooSahProperty model = Model as WooSahProperty;
             model.WooSah = this;
 
-            if (model.Validate())
-            {
-
-            }
-
-            return true;
-
+            _isValid = model.Validate();
         }
 
     }

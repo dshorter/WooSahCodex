@@ -19,7 +19,7 @@ namespace WooSahCodex.Data
 
         public async Task Load(List<WooSah> wooSahs)
         {
-            using (var db = new MyCouchClient("http://localhost:5984/", "learn4"))
+            using (var db = new MyCouchClient("http://localhost:5984/", "learn7"))
             {
                 var pocoList = new List<WooSahPOCO>();
                 wooSahs.ForEach(w => pocoList.Add(w.wooSahPoco));
@@ -31,7 +31,7 @@ namespace WooSahCodex.Data
                     try
                     {
                         var response = db.Entities.PostAsync(poco);
-                        check(response);
+                      //    check(response);
                     }
                     catch (Exception ex)
                     {

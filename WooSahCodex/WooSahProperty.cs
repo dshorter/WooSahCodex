@@ -12,11 +12,11 @@ namespace WooSahCodex
 
         public WooSahProperty()
         {
-            
-            
+
+
         }
 
-          
+
         public WooSahProperty(WooSah wooSah)
         {
 
@@ -33,10 +33,22 @@ namespace WooSahCodex
 
         public virtual bool Validate()
         {
+
             if (WooSah.Model is Chakra)
             {
-
+                if (WooSah.Material is Material.Aluminum)
+                {
+                    return false;
+                }
             }
+
+            //if (WooSah.Material is Material.SS && !(WooSah.Color is Color.None))
+            //    return false;
+            //if (WooSah.Material is Material.Copper && !(WooSah.Color is Color.None))
+            //    return false;
+            if (!(WooSah.Material is Material.Aluminum) && !(WooSah.Color is Color.None))
+                return false;
+
 
             return true;
         }

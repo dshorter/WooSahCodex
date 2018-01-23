@@ -20,6 +20,8 @@ namespace WooSahCodexConsole
             try
             {
                 Creator creator = new Creator();
+                Console.WriteLine("WooSahs created.  Hit enter to load to Couch " + Environment.NewLine);
+                Console.ReadLine();
                 Loader loader = new Loader(creator.wooSahList);
                 await loader.Load(creator.wooSahList);
             }

@@ -29,25 +29,15 @@ namespace WooSahCodex
                 if (Codex.CheckSchema() == false)
                     return;
                 Create();
+                var wooSahStats = new WooSahStats(wooSahList);
+                Console.WriteLine($"Total theoretical WooSah count = {wooSahList.Count * 2  }  ");
+                Console.Write($"Total actual WooSah count = {wooSahStats.PassCount() * 2 }" + Environment.NewLine);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message + " ==== " + ex.InnerException.Message);
             }
 
-
-            Console.WriteLine($"WooSah count -- {wooSahList.Count}  ");
-
-
-            //foreach (WooSah wooSahItem in wooSahList)
-            //{
-            //    Console.WriteLine($"Model -- {wooSahItem.Model.GetType().Name  }  ");
-            //    Console.WriteLine($"Material -- {wooSahItem.Material.GetType().Name }  ");
-            //    Console.WriteLine($"Color  -- {wooSahItem.Color.GetType().Name }  ");
-            //    Console.WriteLine($"Etching -- {wooSahItem.Etching.GetType().Name }  ");
-            //    Console.WriteLine($"Finish -- {wooSahItem.Finish.GetType().Name }  ");
-            //    Console.WriteLine($"isValid -- {wooSahItem.isValid }  ");
-            //}
 
         }
 

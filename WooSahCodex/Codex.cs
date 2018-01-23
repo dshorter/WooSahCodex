@@ -21,13 +21,13 @@ namespace WooSahCodex
         public static bool CheckSchema()
         {
 
-            // Check that all WooSah types are unique      
-            if (WooSahCodexTypesUnique() == false)
-                return false;
+            //// Check that all WooSah types are unique      
+            //if (WooSahCodexTypesUnique() == false)
+            //    return false;
 
-            // Check that all json values are unique        
-            if (JsonTypesUnique() == false)
-                return false;
+            //// Check that all json values are unique        
+            //if (JsonTypesUnique() == false)
+            //    return false;
 
             // Check that there are classes for all properties in json and vice versa    
             if (JsonTypesMatchCodeTypes() == false)
@@ -51,6 +51,8 @@ namespace WooSahCodex
             {
                 if (checkProps(jProps, arrEnum) == false)
                 {
+                    char xx = new char();
+
                     //     return false;
                 }
             }
@@ -69,7 +71,7 @@ namespace WooSahCodex
             jProp.Children()
                 .Values()
                 .Where
-                (child => child.ToString() != "None")
+                (child => child.ToString() != "afaf")
                 .ToList()
                 .ForEach(
                     item => hsJson.Add(item.ToString()));
@@ -79,11 +81,15 @@ namespace WooSahCodex
 
             if (jsonExcepts.Any() || codexExcepts.Any())
             {
-
+                Debug.WriteLine("=====================================");
+                Debug.WriteLine("Exception report for " + propertyType);
+                Debug.WriteLine("=====================================");
                 Debug.WriteLine("Not present for codex ");
                 jsonExcepts.ToList().ForEach(j => Debug.WriteLine(j));
                 Debug.WriteLine("Not present for Json ");
                 codexExcepts.ToList().ForEach(j => Debug.WriteLine(j));
+
+                char xx =  new char();    
 
                //    return false;
             }
