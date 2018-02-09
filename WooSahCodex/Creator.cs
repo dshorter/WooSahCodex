@@ -28,7 +28,9 @@ namespace WooSahCodex
             {
                 if (Codex.CheckSchema() == false)
                     return;
+                
                 Create();
+                
                 var wooSahStats = new WooSahStats(wooSahList);
                 Console.WriteLine($"Total theoretical WooSah count (no rules ) = { wooSahList.Count * 2  }  ");
                 Console.Write($"Total actual WooSah count (rules applied ) = {wooSahStats.PassCount() * 2 }" + Environment.NewLine);

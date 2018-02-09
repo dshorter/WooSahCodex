@@ -30,6 +30,7 @@ namespace WooSahCodexConsole
                     hello = reader.ReadToEnd();
                 }
                 Console.WriteLine(hello);
+              Console.WriteLine("Calculating....");
 
                 Creator creator = new Creator();
 
