@@ -1,0 +1,22 @@
+==============================    
+Welcomer to the WooSah Codex!       
+==============================  
+
+What is the WooSah Codex?  Glad you asked! The Codex is a thing that consists of two parts:
+  * A dynamic collection of WooSah properties (e.g. Model, Material) and property types (e.g. Cosmo, Copper)    
+  * The rules (e.g. “Copper cannot be anodized”) about how those properties can be combined to make the WooSahs that we all love to spin  
+
+What the Codex is not --  
+  * A list.  Although it can be used to create a list.   
+  * An inventory.  Although it can be used to create an inventory.
+  * A database.  Although it can be used to create a database.  
+  * A web page.  Although.. you get it!   
+
+Current progress on the Codex    
+  * Create Codex Framework: Done!  
+  * Create Properties and Property Types: Ongoing.  The Wizard of WA is creating new stuff constantly!
+  * Implement rules: Ongoing.  The Wizard of WA is creating new stuff constantly!   
+  * Calculate # of WooSahs: Done!      
+  * Export WooSahs to CouchDB: Done!
+
+And now, the latest WooSah count --  

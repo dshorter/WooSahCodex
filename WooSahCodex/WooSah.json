@@ -27,6 +27,7 @@
     "Polished",
     "Brushed",
     "Tumbled",
+    "Sandblasted",
     "Anodized"
   ],
   "Etching": [
@@ -58,6 +59,7 @@
     "Ambassador",
     "Element",
     "Rays",
+    "Serpent", 
     "Arrow", 
     "Domed", 
     "Air"

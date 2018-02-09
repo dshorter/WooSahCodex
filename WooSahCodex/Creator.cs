@@ -30,8 +30,8 @@ namespace WooSahCodex
                     return;
                 Create();
                 var wooSahStats = new WooSahStats(wooSahList);
-                Console.WriteLine($"Total theoretical WooSah count = {wooSahList.Count * 2  }  ");
-                Console.Write($"Total actual WooSah count = {wooSahStats.PassCount() * 2 }" + Environment.NewLine);
+                Console.WriteLine($"Total theoretical WooSah count (no rules ) = { wooSahList.Count * 2  }  ");
+                Console.Write($"Total actual WooSah count (rules applied ) = {wooSahStats.PassCount() * 2 }" + Environment.NewLine);
             }
             catch (Exception ex)
             {

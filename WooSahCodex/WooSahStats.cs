@@ -16,14 +16,13 @@ namespace WooSahCodex
 
         public int PassCount()
         {
-            var pass = _wooSahList.Count(w => w.IsValid == true);
-            var pass1  = _wooSahList.Where(w => w.IsValid == true).Count();
+            var pass  = _wooSahList.Count(w => w.IsValid == true);
             return pass;
         }
 
         public int FalseCount()
         {
-            var falses = _wooSahList.Where(w => w.IsValid == false).Count();
+            var falses = _wooSahList.Count(w => w.IsValid == false);
             return falses;
         }    
 

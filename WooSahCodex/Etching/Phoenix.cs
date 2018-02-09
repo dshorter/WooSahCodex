@@ -220,13 +220,45 @@ namespace WooSahCodex.Etching
         }
     }
 
-    public class Air : WooSahProperty, IEtching
+    public class Noble   : WooSahProperty, IEtching
     {
-        public Air()
+        public Noble()
         {
 
         }
-        public Air(WooSah wooSah) : base(wooSah) { }
+        public Noble(WooSah wooSah) : base(wooSah) { }
+
+        public override bool Validate()
+        {
+            var myResult = true;
+
+            return myResult && base.Validate();
+        }
+    }
+
+    public class Atomic  : WooSahProperty, IEtching
+    {
+        public Atomic()
+        {
+
+        }
+        public Atomic(WooSah wooSah) : base(wooSah) { }
+
+        public override bool Validate()
+        {
+            var myResult = true;
+
+            return myResult && base.Validate();
+        }
+    }
+
+    public class AirStream : WooSahProperty, IEtching
+    {
+        public AirStream()
+        {
+
+        }
+        public AirStream(WooSah wooSah) : base(wooSah) { }
 
         public override bool Validate()
         {
