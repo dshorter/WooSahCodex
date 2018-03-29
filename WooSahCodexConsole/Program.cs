@@ -21,7 +21,7 @@ namespace WooSahCodexConsole
             //  Console.WriteLine("WooSah!");
 
             try
-            {        
+            {
                 var path = Environment.CurrentDirectory + "\\The WooSah Codex.txt";
                 string hello;
                 FileStream fileStream = new FileStream(path, FileMode.Open);
@@ -30,7 +30,7 @@ namespace WooSahCodexConsole
                     hello = reader.ReadToEnd();
                 }
                 Console.WriteLine(hello);
-              Console.WriteLine("Calculating....");
+                Console.WriteLine("Calculating....");
 
                 Creator creator = new Creator();
 

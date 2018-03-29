@@ -9,10 +9,13 @@
     "DhJr",
     "MiniChakra",
     "Namaste",
+	"NamasteMini",
     "TheBoss",
     "Ataraxis",
     "ChakraMini",
-    "CosmoMini"
+    "CosmoMini", 
+	"AtaraxisMini",	
+	"Ohana"    
   ],
   "Material": [
     "SS",
@@ -62,7 +65,10 @@
     "Serpent", 
     "Arrow", 
     "Domed", 
-    "Air"
+    "Air", 
+	"Enso", 
+	"Premiere", 
+	"Amaze"	
   ],
   "Color": [
     "None",

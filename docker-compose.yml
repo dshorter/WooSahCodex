@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  codexex1:
+    image: codexex1
+    build:
+      context: ./CodexEx1
+      dockerfile: Dockerfile
