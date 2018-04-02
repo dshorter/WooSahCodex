@@ -15,6 +15,7 @@
     "ChakraMini",
     "CosmoMini", 
 	"AtaraxisMini",	
+	"OhanaMini",	
 	"Ohana"    
   ],
   "Material": [
@@ -64,11 +65,13 @@
     "Rays",
     "Serpent", 
     "Arrow", 
-    "Domed", 
+    "Domed",
+	"Diffuse",    	
     "Air", 
 	"Enso", 
 	"Premiere", 
-	"Amaze"	
+	"Amaze", 
+	"Zaftig"	
   ],
   "Color": [
     "None",
