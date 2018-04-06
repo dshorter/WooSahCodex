@@ -10,6 +10,7 @@
     <Compile Remove="Finish.cs" />
     <Compile Remove="Materials.cs" />
     <Compile Remove="Models.cs" />
+    <Compile Remove="WooSahAttribute.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -22,13 +22,15 @@ namespace WooSahCodexConsole
 
             try
             {
-                var path = Environment.CurrentDirectory + "\\The WooSah Codex.txt";
+                var path = Environment.CurrentDirectory +  @"..\..\..\..\The WooSah Codex.txt";
                 string hello;
                 FileStream fileStream = new FileStream(path, FileMode.Open);
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
                     hello = reader.ReadToEnd();
                 }
+
+                Console.WriteLine(DateTime.Now.ToString());
                 Console.WriteLine(hello);
                 Console.WriteLine("Calculating....");
 

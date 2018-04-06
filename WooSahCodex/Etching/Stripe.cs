@@ -8,9 +8,6 @@ namespace WooSahCodex.Etching
         }
         public Stripe(WooSah wooSah) : base(wooSah) { }
 
-        public override bool Validate()
-        {
-            throw new System.NotImplementedException();
-        }
+      
     }
 }

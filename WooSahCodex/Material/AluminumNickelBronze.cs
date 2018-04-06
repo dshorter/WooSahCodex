@@ -10,7 +10,11 @@ namespace WooSahCodex.Material
 
         public override bool Validate()
         {
-            throw new System.NotImplementedException();
+            var myResult = true;
+
+            var x = WooSah;
+
+            return myResult && base.Validate();
         }
     }
 }

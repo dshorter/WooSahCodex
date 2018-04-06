@@ -6,15 +6,6 @@ using Newtonsoft.Json.Linq;
 
 namespace WooSahCodex
 {
-    public enum PropertyTypes
-    {
-        Model,
-        Material,
-        Finish,
-        Color,
-        Etching
-    }
-
     public static class Codex
     {
 
@@ -39,7 +30,7 @@ namespace WooSahCodex
 
         private static bool JsonTypesMatchCodeTypes()
         {
-            string jsonPath = @"..\WooSahCodex\WooSah.json";
+            string jsonPath = @"..\..\..\..\WooSahCodex\WooSah.json";
             var jObject = Utils.GetJOhject(jsonPath);
 
             List<JProperty> jProps = jObject.Properties().ToList();
@@ -81,6 +72,7 @@ namespace WooSahCodex
 
             if (jsonExcepts.Any() || codexExcepts.Any())
             {
+                Debug.WriteLine(DateTime.Now.ToString());
                 Debug.WriteLine("=====================================");
                 Debug.WriteLine("Exception report for " + propertyType);
                 Debug.WriteLine("=====================================");
@@ -122,7 +114,7 @@ namespace WooSahCodex
         private static bool JsonTypesUnique()
         {
 
-            string path = @"..\WooSahCodex\WooSah.json";
+            string path = @"..\..\..\..\WooSahCodex\WooSah.json";
             var jObject = Utils.GetJOhject(path);
             HashSet<string> jsonTypeCheckSet = new HashSet<string>();
             List<string> jsonTypeCheckList = new List<string>();
@@ -147,7 +139,7 @@ namespace WooSahCodex
         public static List<HashSet<string>> GetExcepts(WooSahCategory wooSahCategory, Type wooSahProp)
         {
 
-            string path = @"..\WooSahCodex\" + wooSahCategory + @"\" + wooSahProp.Name + ".json";
+            string path = @"..\..\..\..\WooSahCodex\" + wooSahCategory + @"\" + wooSahProp.Name + ".json";
 
             var jObject = Utils.GetJOhject(path);
 

@@ -6,21 +6,6 @@ using WooSahCodex.Model;
 
 namespace WooSahCodex
 {
-    public class WooSahPOCO
-    {
-        public string DocumentId;
-        public string _rev;
-
-        public bool isValid;
-
-        public string Model { get; set; }
-        public string Material { get; set; }
-        public string Finish { get; set; }
-        public string Color { get; set; }
-        public string Etching { get; set; }
-
-    }
-
     public class WooSah
     {
 
@@ -55,10 +40,29 @@ namespace WooSahCodex
 
         public void ValidateMe()
         {
+
+            _isValid = false;
+
             WooSahProperty model = Model as WooSahProperty;
             model.WooSah = this;
 
-            _isValid = model.Validate();
+            WooSahProperty material = Material as WooSahProperty;
+            material.WooSah = this;
+
+            WooSahProperty finish = Finish as WooSahProperty;
+            finish.WooSah = this;
+
+            WooSahProperty color = Color as WooSahProperty;
+            color.WooSah = this;
+
+            WooSahProperty etching = Etching as WooSahProperty;
+            etching.WooSah = this;
+
+
+            if (model.Validate() && material.Validate() && finish.Validate() && color.Validate() && etching.Validate())
+            {
+                _isValid = true;
+            }             
         }
 
     }
