@@ -6,16 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using CodexEx1.Models;
 
-namespace CodexEx1
+namespace CodexEx2
 {
     public class Startup
-    {  
+    {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;     
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,9 +22,6 @@ namespace CodexEx1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddDbContext<WooSahContext>(options =>
-                    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WooSahContext-02bd5372-e3a8-40bd-b9bf-e31a2aa72e6d;Trusted_Connection=True;MultipleActiveResultSets=true"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,12 +44,7 @@ namespace CodexEx1
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "WooSahPOCOModel",
-                    template: "{controller=WooSahPOCOModel}/{action=IndexW}");
-
-            });        
+            });
         }
     }
 }

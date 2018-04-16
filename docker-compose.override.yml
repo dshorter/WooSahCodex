@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  codexex1:
+  codexex2:  
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
@@ -10,3 +10,5 @@ networks:
   default:
     external:
       name: nat
+
+

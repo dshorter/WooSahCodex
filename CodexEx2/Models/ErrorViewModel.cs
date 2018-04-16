@@ -1,6 +1,6 @@
 using System;
 
-namespace CodexEx1.Models
+namespace CodexEx2.Models
 {
     public class ErrorViewModel
     {

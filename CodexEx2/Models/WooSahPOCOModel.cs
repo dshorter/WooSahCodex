@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CodexEx1.Models
+namespace CodexEx2.Models
 {
   
     public class WooSahPOCOModel

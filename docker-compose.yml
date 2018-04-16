@@ -1,8 +1,10 @@
 version: '3'
 
 services:
-  codexex1:
-    image: codexex1
+
+  codexex2:
+    image: codexex2
     build:
-      context: ./CodexEx1
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: CodexEx2\Dockerfile
+

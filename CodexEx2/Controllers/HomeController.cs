@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CodexEx1.Models;
+using CodexEx2.Models;
 
-namespace CodexEx1.Controllers
+namespace CodexEx2.Controllers
 {
     public class HomeController : Controller
     {
