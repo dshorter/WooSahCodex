@@ -28,10 +28,17 @@ namespace WooSahCodex
             {
                 if (Codex.CheckSchema() == false)
                     return;
-                
+
                 Create();
-              
-                CsvOutput.Csv.PocoToCsv(wooSahList);
+
+                var simplePocoList = new List<WooSahPOCO>();
+                wooSahList.ForEach(poco => simplePocoList.Add(poco.wooSahPoco));
+
+                var csvList = CsvOutput.Csv.PocoToCsv(simplePocoList);
+                var csvArray = csvList.ToArray();
+
+                System.IO.File.WriteAllLines(@"C:\Users\Public\Codex.csv", csvArray);    
+
                 var wooSahStats = new WooSahStats(wooSahList);
                 Console.WriteLine($"Total theoretical WooSah count (no rules ) = { wooSahList.Count * 2  }  ");
                 Console.Write($"Total actual WooSah count (rules applied ) = {wooSahStats.PassCount() * 2 }" + Environment.NewLine);
