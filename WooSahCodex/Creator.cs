@@ -14,6 +14,7 @@ namespace WooSahCodex
     {
         public int Count { get; set; }
         public List<WooSah> wooSahList;
+        public List<EF.WooSah> wooSahEFList;
 
         private HashSet<string> modelHashSet;
         private HashSet<string> materialHashSet;
@@ -32,12 +33,15 @@ namespace WooSahCodex
                 Create();
 
                 var simplePocoList = new List<WooSahPOCO>();
+                var simpleEFList = new List<EF.WooSah>();
+
                 wooSahList.ForEach(poco => simplePocoList.Add(poco.wooSahPoco));
+                wooSahList.ForEach(poco => simpleEFList.Add(poco.wooSahEF));
 
                 var csvList = CsvOutput.Csv.PocoToCsv(simplePocoList);
                 var csvArray = csvList.ToArray();
 
-                System.IO.File.WriteAllLines(@"C:\Users\Public\Codex.csv", csvArray);    
+                System.IO.File.WriteAllLines(@"C:\Users\Public\Codex.csv", csvArray);
 
                 var wooSahStats = new WooSahStats(wooSahList);
                 Console.WriteLine($"Total theoretical WooSah count (no rules ) = { wooSahList.Count * 2  }  ");
@@ -112,6 +116,8 @@ namespace WooSahCodex
                                     wooSah.Color = oColor;
 
                                     wooSah.CreatePoco();
+                                    wooSah.CreateEF();
+
                                     wooSah.ValidateMe();
 
                                     wooSahList.Add(wooSah);

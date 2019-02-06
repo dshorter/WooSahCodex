@@ -39,7 +39,9 @@ namespace WooSahCodexConsole
                 Console.WriteLine("WooSahs created.  Hit enter to export to CouchDB.... " + Environment.NewLine);
                 Console.ReadLine();
                 Loader loader = new Loader(creator.wooSahList);
-                await loader.Load(creator.wooSahList);
+                //  await loader.LoadCouch(creator.wooSahList);    
+                loader.LoadSql(creator.wooSahList);
+
             }
             catch (Exception ex)
             {

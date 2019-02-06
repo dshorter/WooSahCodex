@@ -1,8 +1,10 @@
+using System;
 using WooSahCodex.Color;
 using WooSahCodex.Etching;
 using WooSahCodex.Finish;
 using WooSahCodex.Material;
 using WooSahCodex.Model;
+
 
 namespace WooSahCodex
 {
@@ -10,6 +12,7 @@ namespace WooSahCodex
     {
 
         public WooSahPOCO wooSahPoco;
+        public EF.WooSah wooSahEF;
 
         public string DocumentId;
         public string _rev;
@@ -62,8 +65,19 @@ namespace WooSahCodex
             if (model.Validate() && material.Validate() && finish.Validate() && color.Validate() && etching.Validate())
             {
                 _isValid = true;
-            }             
+            }
         }
 
+        public void CreateEF()
+        {
+            wooSahEF = new EF.WooSah()
+            {
+                Model = Model.GetType().Name,
+                Color = Color.GetType().Name,
+                Material = Material.GetType().Name,
+                Finish = Finish.GetType().Name,
+                Etching = Etching.GetType().Name
+            };
+        }
     }
 }

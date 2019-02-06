@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MyCouch;
 using MyCouch.Responses;
 using WooSahCodex;
+using WooSahCodex.EF;
 
 namespace WooSahCodex.Data
 {
@@ -17,7 +18,17 @@ namespace WooSahCodex.Data
 
         }
 
-        public async Task Load(List<WooSah> wooSahs)
+        public void LoadSql(List<WooSah> wooSahs)
+        {
+            var pocoEFList = new List<EF.WooSah>();    
+
+            wooSahs.ForEach(w => pocoEFList.Add(w.wooSahEF));    
+
+            WooSahLoader.Load(pocoEFList);
+
+        }
+
+        public async Task LoadCouch(List<WooSah> wooSahs)
         {
             using (var db = new MyCouchClient("http://localhost:5984/", "learn7"))
             {
@@ -35,7 +46,7 @@ namespace WooSahCodex.Data
 
 
                     }
-                    
+
                 }
 
             }
@@ -52,7 +63,7 @@ namespace WooSahCodex.Data
 
         //    return new Action<Task<EntityResponse<WooSahPOCO>>>(Target);
         //}
-  
+
     }
 }
 
